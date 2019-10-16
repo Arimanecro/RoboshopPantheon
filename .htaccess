@@ -4,24 +4,9 @@ DirectoryIndex ./public/index.php
 
 Options All -ExecCGI -Indexes -Includes +FollowSymLinks
 
-php_flag display_startup_errors on
-php_flag display_errors on
-php_flag html_errors on
-php_flag  log_errors on
-
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ ./public/index.php
 </IfModule>
-
-<FilesMatch "\.(php|html|htm)$">
-  FileETag None
-  <IfModule mod_headers.c>
-     Header unset ETag
-     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-     Header set Pragma "no-cache"
-     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
-  </IfModule>
-</FilesMatch>
